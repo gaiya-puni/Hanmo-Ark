@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI书法教学 — 翰墨方舟</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.tabs { display: flex; gap: 0; border-bottom: 2px solid #e8e0d0; margin-bottom: 2rem; }
+.tab {
+  padding: 0.8rem 1.8rem; cursor: pointer; font-size: 0.95rem;
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all .2s; color: var(--gray);
+}
+.tab.active { color: var(--red); border-bottom-color: var(--red); font-weight: 700; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* 书体选择 */
+.style-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.2rem; }
+.style-card {
+  border: 2px solid #e8e0d0; border-radius: 8px; padding: 1.5rem 1rem;
+  text-align: center; cursor: pointer; transition: all .2s;
+}
+.style-card:hover, .style-card.selected { border-color: var(--red); background: #fff5f5; }
+.style-char { font-size: 3rem; line-height: 1.2; margin-bottom: 0.5rem; }
+.style-card h4 { font-size: 1rem; letter-spacing: 2px; }
+.style-card p { font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; }
+
+/* 课程列表 */
+.course-list { display: flex; flex-direction: column; gap: 1rem; }
+.course-item {
+  display: flex; align-items: center; gap: 1.2rem;
+  border: 1px solid #e8e0d0; border-radius: 8px; padding: 1rem 1.5rem;
+  background: var(--white); transition: box-shadow .2s;
+}
+.course-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+.course-num {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: var(--red); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+}
+.course-num.done { background: #27ae60; }
+.course-info { flex: 1; }
+.course-info h4 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+.course-info p { font-size: 0.8rem; color: var(--gray); }
+.course-meta { font-size: 0.78rem; color: var(--gray); text-align: right; }
+
+/* 测评 */
+.upload-box {
+  border: 2px dashed #d4a017; border-radius: 8px; padding: 3rem;
+  text-align: center; cursor: pointer; transition: background .2s;
+}
+.upload-box:hover { background: #fef9f0; }
+.upload-box p { color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem; }
+.score-card {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem; margin-top: 1.5rem;
+}
+.score-item { text-align: center; padding: 1.2rem; border: 1px solid #e8e0d0; border-radius: 8px; background: var(--white); }
+.score-num { font-size: 2rem; font-weight: 700; color: var(--red); }
+.score-label { font-size: 0.8rem; color: var(--gray); margin-top: 0.3rem; }
+
+/* 打卡 */
+.checkin-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; max-width: 400px; }
+.day {
+  aspect-ratio: 1; border-radius: 4px; display: flex;
+  align-items: center; justify-content: center; font-size: 0.75rem;
+  background: #f0ebe0; color: var(--gray);
+}
+.day.done { background: var(--red); color: #fff; }
+.day.today { border: 2px solid var(--gold); }
+.streak-banner {
+  background: linear-gradient(135deg, var(--ink), #0f3460);
+  color: #fff; border-radius: 8px; padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.streak-num { font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">翰墨方舟</a>
+  <ul class="nav-links">
+    <li><a href="teaching.html" class="active">AI教学</a></li>
+    <li><a href="creative.html">文创生成</a></li>
+    <li><a href="shop.html">文创电商</a></li>
+    <li><a href="community.html">社区</a></li>
+    <li><a href="profile.html">个人中心</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>AI 书法教学</h1>
+  <p>分层课程 · 智能测评 · 打卡激励</p>
+</div>
+
+<div class="section">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('courses')">分层课程</div>
+    <div class="tab" onclick="switchTab('eval')">智能测评</div>
+    <div class="tab" onclick="switchTab('checkin')">书法打卡</div>
+  </div>
+
+  <!-- 分层课程 -->
+  <div id="tab-courses" class="tab-content active">
+    <div class="section-title" style="text-align:left;margin-bottom:1.5rem;">
+      <h2 style="font-size:1.2rem;">选择书体</h2>
+    </div>
+    <div class="style-grid" style="margin-bottom:2rem;">
+      <div class="style-card selected" onclick="selectStyle(this)">
+        <div class="style-char">楷</div>
+        <h4>楷书</h4><p>端正规范，入门首选</p>
+      </div>
+      <div class="style-card" onclick="selectStyle(this)">
+        <div class="style-char">行</div>
+        <h4>行书</h4><p>流畅自然，实用性强</p>
+      </div>
+      <div class="style-card" onclick="selectStyle(this)">
+        <div class="style-char">隶</div>
+        <h4>隶书</h4><p>古朴厚重，历史悠久</p>
+      </div>
+      <div class="style-card" onclick="selectStyle(this)">
+        <div class="style-char">篆</div>
+        <h4>篆书</h4><p>古雅精致，艺术价值高</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="text-align:left;margin-bottom:1.2rem;">
+      <h2 style="font-size:1.2rem;">楷书入门课程</h2>
+      <p style="font-size:0.85rem;color:var(--gray);">笔画 → 偏旁 → 结字 → 章法，每节 10-15 分钟</p>
+    </div>
+    <div class="course-list">
+      <div class="course-item">
+        <div class="course-num done">✓</div>
+        <div class="course-info"><h4>第1课：横竖撇捺基本笔画</h4><p>掌握四大基础笔画的运笔方法</p></div>
+        <div class="course-meta">12分钟<br><span style="color:#27ae60;">已完成</span></div>
+      </div>
+      <div class="course-item">
+        <div class="course-num done">✓</div>
+        <div class="course-info"><h4>第2课：折钩挑点笔画</h4><p>学习折、钩、挑、点的写法</p></div>
+        <div class="course-meta">10分钟<br><span style="color:#27ae60;">已完成</span></div>
+      </div>
+      <div class="course-item">
+        <div class="course-num" style="background:var(--gold);">3</div>
+        <div class="course-info"><h4>第3课：常用偏旁部首</h4><p>三点水、木字旁、口字旁等</p></div>
+        <div class="course-meta">15分钟<br><span style="color:var(--gold);">进行中</span></div>
+      </div>
+      <div class="course-item" style="opacity:0.6;">
+        <div class="course-num">4</div>
+        <div class="course-info"><h4>第4课：字的间架结构</h4><p>左右结构、上下结构的布局原则</p></div>
+        <div class="course-meta">15分钟<br>未解锁</div>
+      </div>
+      <div class="course-item" style="opacity:0.6;">
+        <div class="course-num">5</div>
+        <div class="course-info"><h4>第5课：简单章法入门</h4><p>行距、字距与整体布局</p></div>
+        <div class="course-meta">12分钟<br>未解锁</div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <a href="#" class="btn btn-primary">继续学习第3课</a>
+    </div>
+  </div>
+
+  <!-- 智能测评 -->
+  <div id="tab-eval" class="tab-content">
+    <div class="cards" style="margin-bottom:2rem;">
+      <div class="card">
+        <div class="card-icon">📸</div>
+        <h3>即时测评</h3>
+        <p>上传书法作品，AI 提取字迹骨架与专业标准比对，生成评分与改进建议。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>阶段测评</h3>
+        <p>完成阶段课程后进行综合测评，生成详细报告，展示学习成果与薄弱环节。</p>
+      </div>
+    </div>
+
+    <div class="upload-box" onclick="alert('上传功能演示')">
+      <div style="font-size:3rem;">📷</div>
+      <p>点击上传书法作品照片</p>
+      <p style="font-size:0.78rem;margin-top:0.3rem;">支持 JPG / PNG，建议在自然光下拍摄</p>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h3 style="margin-bottom:1rem;letter-spacing:2px;">上次测评结果</h3>
+      <div class="score-card">
+        <div class="score-item"><div class="score-num">82</div><div class="score-label">笔画规范</div></div>
+        <div class="score-item"><div class="score-num">75</div><div class="score-label">结字布局</div></div>
+        <div class="score-item"><div class="score-num">68</div><div class="score-label">章法整体</div></div>
+        <div class="score-item"><div class="score-num" style="color:var(--gold);">75</div><div class="score-label">综合评分</div></div>
+      </div>
+      <div style="margin-top:1.2rem;padding:1rem 1.5rem;background:#fff;border-left:4px solid var(--gold);border-radius:4px;">
+        <p style="font-size:0.9rem;line-height:1.8;color:var(--gray);">
+          <strong style="color:var(--ink);">AI建议：</strong>横画收笔力度不足，建议加强"横"的专项练习；结字整体偏左，注意重心居中。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 书法打卡 -->
+  <div id="tab-checkin" class="tab-content">
+    <div class="streak-banner">
+      <div>
+        <div style="font-size:0.9rem;color:#aaa;">当前连续打卡</div>
+        <div class="streak-num">14 天</div>
+        <div style="font-size:0.85rem;color:#aaa;">再坚持 7 天即可获得新手包奖励！</div>
+      </div>
+      <a href="#" class="btn btn-primary">今日打卡</a>
+    </div>
+
+    <h3 style="margin-bottom:1rem;letter-spacing:2px;">本月打卡记录</h3>
+    <div class="checkin-grid">
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">一</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">二</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">三</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">四</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">五</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">六</div>
+      <div class="day" style="font-size:0.65rem;background:transparent;color:var(--gray);">日</div>
+      <div class="day"></div><div class="day done">1</div><div class="day done">2</div>
+      <div class="day done">3</div><div class="day done">4</div><div class="day done">5</div><div class="day done">6</div>
+      <div class="day done">7</div><div class="day done">8</div><div class="day done">9</div>
+      <div class="day done">10</div><div class="day done">11</div><div class="day done">12</div><div class="day done">13</div>
+      <div class="day done today">14</div><div class="day">15</div><div class="day">16</div>
+      <div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div>
+      <div class="day">21</div><div class="day">22</div><div class="day">23</div>
+      <div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div>
+      <div class="day">28</div><div class="day">29</div><div class="day">30</div>
+    </div>
+
+    <div style="margin-top:2rem;padding:1.2rem 1.5rem;background:#fff;border-radius:8px;border:1px solid #e8e0d0;">
+      <h4 style="margin-bottom:0.8rem;letter-spacing:1px;">打卡奖励进度</h4>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="flex:1;background:#f0ebe0;border-radius:20px;height:10px;">
+          <div style="width:67%;background:linear-gradient(90deg,var(--red),var(--gold));height:100%;border-radius:20px;"></div>
+        </div>
+        <span style="font-size:0.85rem;color:var(--gray);">14/21 天</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--gray);margin-top:0.6rem;">完成21天连续打卡，免费获得新手文房套装</p>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tabs = ['courses','eval','checkin'];
+  document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+function selectStyle(el) {
+  document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>

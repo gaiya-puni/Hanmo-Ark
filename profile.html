@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人中心 — 翰墨方舟</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.profile-layout { display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; }
+@media(max-width:768px){ .profile-layout { grid-template-columns: 1fr; } }
+
+.sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.user-card { background: linear-gradient(135deg, var(--ink), #0f3460); color: #fff; border-radius: 8px; padding: 1.5rem; text-align: center; }
+.avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.8rem; }
+.user-card h3 { font-size: 1.1rem; letter-spacing: 2px; }
+.user-card p { font-size: 0.8rem; color: #aaa; margin-top: 0.3rem; }
+.level-badge { display: inline-block; margin-top: 0.6rem; padding: 0.2rem 0.8rem; background: var(--gold); color: var(--ink); border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
+
+.menu-list { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; overflow: hidden; }
+.menu-item { padding: 0.9rem 1.2rem; border-bottom: 1px solid #f0ebe0; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; transition: background .15s; }
+.menu-item:last-child { border-bottom: none; }
+.menu-item:hover, .menu-item.active { background: #fef9f0; color: var(--red); }
+
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+@media(max-width:600px){ .stat-grid { grid-template-columns: repeat(2,1fr); } }
+.stat-box { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.2rem; text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--red); }
+.stat-label { font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; }
+
+/* Radar chart placeholder */
+.radar-wrap { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.radar-wrap h4 { font-size: 0.95rem; letter-spacing: 2px; margin-bottom: 1rem; }
+canvas { display: block; margin: 0 auto; }
+
+.order-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.order-item { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 1rem; }
+.order-icon { font-size: 2rem; flex-shrink: 0; }
+.order-info { flex: 1; }
+.order-info h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+.order-info p { font-size: 0.78rem; color: var(--gray); }
+.order-status { font-size: 0.8rem; text-align: right; }
+.status-shipping { color: var(--gold); }
+.status-done { color: #27ae60; }
+
+.points-bar { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.points-num { font-size: 2rem; font-weight: 700; color: var(--gold); }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">翰墨方舟</a>
+  <ul class="nav-links">
+    <li><a href="teaching.html">AI教学</a></li>
+    <li><a href="creative.html">文创生成</a></li>
+    <li><a href="shop.html">文创电商</a></li>
+    <li><a href="community.html">社区</a></li>
+    <li><a href="profile.html" class="active">个人中心</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>个人中心</h1>
+  <p>学习数据 · 订单管理 · 积分中心</p>
+</div>
+
+<div class="section">
+  <div class="profile-layout">
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+      <div class="user-card">
+        <div class="avatar">墨</div>
+        <h3>翰墨学员</h3>
+        <p>加入 32 天</p>
+        <span class="level-badge">楷书·进阶中</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item active" onclick="showTab('data')">📊 学习数据</div>
+        <div class="menu-item" onclick="showTab('orders')">📦 我的订单</div>
+        <div class="menu-item" onclick="showTab('points')">⭐ 积分中心</div>
+      </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div>
+      <!-- 学习数据 -->
+      <div id="tab-data">
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-num">32</div><div class="stat-label">学习天数</div></div>
+          <div class="stat-box"><div class="stat-num">18</div><div class="stat-label">完成课程</div></div>
+          <div class="stat-box"><div class="stat-num">47</div><div class="stat-label">练习次数</div></div>
+          <div class="stat-box"><div class="stat-num">14</div><div class="stat-label">连续打卡</div></div>
+        </div>
+
+        <div class="radar-wrap">
+          <h4>各维度得分分析</h4>
+          <canvas id="radarChart" width="280" height="280"></canvas>
+        </div>
+
+        <div class="radar-wrap">
+          <h4>消费数据</h4>
+          <div class="stat-grid" style="margin-bottom:0;">
+            <div class="stat-box"><div class="stat-num" style="color:var(--gold);">¥356</div><div class="stat-label">累计消费</div></div>
+            <div class="stat-box"><div class="stat-num" style="color:var(--gold);">4</div><div class="stat-label">购买商品</div></div>
+            <div class="stat-box"><div class="stat-num" style="color:var(--gold);">2</div><div class="stat-label">定制次数</div></div>
+            <div class="stat-box"><div class="stat-num" style="color:var(--gold);">1</div><div class="stat-label">订阅月数</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 订单 -->
+      <div id="tab-orders" style="display:none;">
+        <div class="order-list">
+          <div class="order-item">
+            <div class="order-icon">🖼️</div>
+            <div class="order-info"><h4>书法定制相框</h4><p>2026-04-10 · 订单号 HM20260410001</p></div>
+            <div class="order-status"><span class="status-shipping">配送中</span><br><span style="font-size:0.75rem;color:var(--gray);">¥128</span></div>
+          </div>
+          <div class="order-item">
+            <div class="order-icon">🎁</div>
+            <div class="order-info"><h4>新手礼盒套装</h4><p>2026-03-28 · 订单号 HM20260328002</p></div>
+            <div class="order-status"><span class="status-done">已完成</span><br><span style="font-size:0.75rem;color:var(--gray);">¥168</span></div>
+          </div>
+          <div class="order-item">
+            <div class="order-icon">📦</div>
+            <div class="order-info"><h4>月度订阅盒 · 4月</h4><p>2026-04-01 · 订单号 HM20260401003</p></div>
+            <div class="order-status"><span class="status-shipping">备货中</span><br><span style="font-size:0.75rem;color:var(--gray);">¥99</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 积分 -->
+      <div id="tab-points" style="display:none;">
+        <div class="points-bar" style="margin-bottom:1.2rem;">
+          <div><div style="font-size:0.85rem;color:var(--gray);">当前积分</div><div class="points-num">1,240</div></div>
+          <a href="shop.html" class="btn btn-outline">积分兑换</a>
+        </div>
+        <div class="order-list">
+          <div class="order-item">
+            <div class="order-icon">✅</div>
+            <div class="order-info"><h4>完成课程第2课</h4><p>2026-04-14</p></div>
+            <div class="order-status" style="color:#27ae60;">+50</div>
+          </div>
+          <div class="order-item">
+            <div class="order-icon">📷</div>
+            <div class="order-info"><h4>上传练习作品</h4><p>2026-04-13</p></div>
+            <div class="order-status" style="color:#27ae60;">+20</div>
+          </div>
+          <div class="order-item">
+            <div class="order-icon">🛒</div>
+            <div class="order-info"><h4>购买新手礼盒</h4><p>2026-03-28</p></div>
+            <div class="order-status" style="color:#27ae60;">+168</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
+
+<script>
+function showTab(name) {
+  ['data','orders','points'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t===name ? '' : 'none';
+  });
+  document.querySelectorAll('.menu-item').forEach((el,i) => {
+    el.classList.toggle('active', ['data','orders','points'][i]===name);
+  });
+}
+
+// Simple radar chart
+(function(){
+  const canvas = document.getElementById('radarChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx=140, cy=140, r=100;
+  const labels=['笔画','结字','章法','平均'];
+  const scores=[82,75,68,75];
+  const angles = labels.map((_,i) => (i/labels.length)*Math.PI*2 - Math.PI/2);
+
+  // grid
+  ctx.strokeStyle='#e8e0d0'; ctx.lineWidth=1;
+  [0.25,0.5,0.75,1].forEach(scale => {
+    ctx.beginPath();
+    angles.forEach((a,i) => {
+      const x=cx+Math.cos(a)*r*scale, y=cy+Math.sin(a)*r*scale;
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    });
+    ctx.closePath(); ctx.stroke();
+  });
+  angles.forEach(a => {
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(a)*r, cy+Math.sin(a)*r);
+    ctx.stroke();
+  });
+
+  // data
+  ctx.beginPath(); ctx.fillStyle='rgba(192,57,43,0.2)'; ctx.strokeStyle='#c0392b'; ctx.lineWidth=2;
+  angles.forEach((a,i) => {
+    const x=cx+Math.cos(a)*r*(scores[i]/100), y=cy+Math.sin(a)*r*(scores[i]/100);
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+
+  // labels
+  ctx.fillStyle=var_ink='#1a1a2e'; ctx.font='13px serif'; ctx.textAlign='center';
+  angles.forEach((a,i) => {
+    const x=cx+Math.cos(a)*(r+20), y=cy+Math.sin(a)*(r+20)+5;
+    ctx.fillText(labels[i]+' '+scores[i], x, y);
+  });
+})();
+</script>
+</body>
+</html>

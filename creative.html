@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一键文创生成 — 翰墨方舟</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.creator-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media(max-width:768px){ .creator-layout { grid-template-columns: 1fr; } }
+
+.panel { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.5rem; }
+.panel h3 { font-size: 1rem; letter-spacing: 2px; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid #e8e0d0; }
+
+.upload-area {
+  border: 2px dashed #d4a017; border-radius: 8px; padding: 2rem;
+  text-align: center; cursor: pointer; transition: background .2s; margin-bottom: 1rem;
+}
+.upload-area:hover { background: #fef9f0; }
+
+.input-group { margin-bottom: 1rem; }
+.input-group label { display: block; font-size: 0.85rem; color: var(--gray); margin-bottom: 0.4rem; }
+.input-group input, .input-group textarea {
+  width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #e8e0d0;
+  border-radius: 4px; font-family: inherit; font-size: 0.9rem;
+  background: var(--cream); outline: none; transition: border-color .2s;
+}
+.input-group input:focus, .input-group textarea:focus { border-color: var(--gold); }
+
+.template-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+.tpl {
+  border: 2px solid #e8e0d0; border-radius: 6px; padding: 0.8rem 0.5rem;
+  text-align: center; cursor: pointer; transition: all .2s;
+}
+.tpl:hover, .tpl.selected { border-color: var(--red); background: #fff5f5; }
+.tpl-icon { font-size: 1.8rem; }
+.tpl p { font-size: 0.75rem; margin-top: 0.3rem; color: var(--gray); }
+
+.preview-box {
+  background: #f5f0e8; border-radius: 8px; min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem; margin-bottom: 1rem;
+}
+.preview-frame {
+  width: 180px; height: 220px; background: var(--white);
+  border: 8px solid #8b6914; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  font-size: 2.5rem; letter-spacing: 4px; color: var(--ink);
+  font-weight: 700;
+}
+.action-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">翰墨方舟</a>
+  <ul class="nav-links">
+    <li><a href="teaching.html">AI教学</a></li>
+    <li><a href="creative.html" class="active">文创生成</a></li>
+    <li><a href="shop.html">文创电商</a></li>
+    <li><a href="community.html">社区</a></li>
+    <li><a href="profile.html">个人中心</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>一键文创生成</h1>
+  <p>上传作品或输入文字，即刻生成专属文创产品</p>
+</div>
+
+<div class="section">
+  <div class="creator-layout">
+    <!-- 左：输入 -->
+    <div>
+      <div class="panel" style="margin-bottom:1.2rem;">
+        <h3>内容输入</h3>
+        <div class="upload-area" onclick="alert('上传功能演示')">
+          <div style="font-size:2.5rem;">📷</div>
+          <p style="font-size:0.85rem;color:var(--gray);margin-top:0.4rem;">上传书法作品照片</p>
+        </div>
+        <div class="input-group">
+          <label>或输入文字（英文名、祝福语、词句）</label>
+          <textarea id="textInput" rows="3" placeholder="例：福、山高水长、Happy New Year…" oninput="updatePreview()"></textarea>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>选择模板</h3>
+        <div class="template-grid">
+          <div class="tpl selected" onclick="selectTpl(this,'🖼️','相框')">
+            <div class="tpl-icon">🖼️</div><p>极简相框</p>
+          </div>
+          <div class="tpl" onclick="selectTpl(this,'📜','卷轴')">
+            <div class="tpl-icon">📜</div><p>中式卷轴</p>
+          </div>
+          <div class="tpl" onclick="selectTpl(this,'👕','T恤')">
+            <div class="tpl-icon">👕</div><p>T恤印花</p>
+          </div>
+          <div class="tpl" onclick="selectTpl(this,'📱','手机壳')">
+            <div class="tpl-icon">📱</div><p>手机壳</p>
+          </div>
+          <div class="tpl" onclick="selectTpl(this,'🪭','折扇')">
+            <div class="tpl-icon">🪭</div><p>折扇</p>
+          </div>
+          <div class="tpl" onclick="selectTpl(this,'🎁','礼盒')">
+            <div class="tpl-icon">🎁</div><p>礼盒套装</p>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;">
+          <button class="btn btn-primary" style="width:100%;" onclick="generate()">生成效果预览</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：预览 -->
+    <div class="panel">
+      <h3>效果预览</h3>
+      <div class="preview-box">
+        <div class="preview-frame" id="previewFrame">福</div>
+        <p style="font-size:0.8rem;color:var(--gray);" id="previewLabel">极简相框 · 预览效果</p>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-primary" onclick="alert('下单功能演示')">一键下单</button>
+        <button class="btn btn-outline" onclick="generate()">重新生成</button>
+      </div>
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:0.8rem;">
+        下单后系统自动生成高清印刷文件，对接合作厂商生产配送
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
+
+<script>
+let currentTpl = { icon: '🖼️', name: '极简相框' };
+function selectTpl(el, icon, name) {
+  document.querySelectorAll('.tpl').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  currentTpl = { icon, name };
+  updatePreview();
+}
+function updatePreview() {
+  const text = document.getElementById('textInput').value.trim() || '福';
+  document.getElementById('previewFrame').textContent = text.slice(0,4);
+  document.getElementById('previewLabel').textContent = currentTpl.name + ' · 预览效果';
+}
+function generate() {
+  const frame = document.getElementById('previewFrame');
+  frame.style.opacity = '0.3';
+  setTimeout(() => { updatePreview(); frame.style.opacity = '1'; }, 600);
+}
+</script>
+</body>
+</html>
