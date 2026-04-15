@@ -1,293 +1,573 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>翰墨方舟 — 书法学习与文创平台</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --ink: #1a1a2e;
-    --red: #c0392b;
-    --gold: #d4a017;
-    --cream: #fdf6e3;
-    --gray: #6c757d;
-  }
-  body { font-family: 'Noto Serif SC', 'SimSun', serif; background: var(--cream); color: var(--ink); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>翰墨方舟 — 书法学习与文创平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(26,26,46,0.95); backdrop-filter: blur(8px);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%; height: 64px;
-  }
-  .logo { color: var(--gold); font-size: 1.4rem; letter-spacing: 4px; font-weight: 700; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: #ccc; text-decoration: none; font-size: 0.9rem; transition: color .2s; }
-  .nav-links a:hover { color: var(--gold); }
+    :root {
+      --ink: #1a1a2e;
+      --red: #c0392b;
+      --gold: #d4a017;
+      --cream: #fdf6e3;
+      --gray: #6c757d;
+    }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, var(--ink) 0%, #16213e 60%, #0f3460 100%);
-    display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 80px 5% 40px;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '書'; position: absolute;
-    font-size: 40vw; color: rgba(255,255,255,0.03);
-    font-weight: 900; line-height: 1;
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-    pointer-events: none;
-  }
-  .hero-content { position: relative; z-index: 1; }
-  .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); color: #fff; letter-spacing: 8px; margin-bottom: 1rem; }
-  .hero h1 span { color: var(--gold); }
-  .hero p { font-size: 1.1rem; color: #aaa; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; }
-  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    padding: 0.8rem 2rem; border-radius: 4px; font-size: 1rem;
-    cursor: pointer; text-decoration: none; transition: all .2s;
-    font-family: inherit;
-  }
-  .btn-primary { background: var(--red); color: #fff; border: none; }
-  .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
-  .btn-outline { background: transparent; color: var(--gold); border: 2px solid var(--gold); }
-  .btn-outline:hover { background: var(--gold); color: var(--ink); }
+    body {
+      font-family: 'Noto Serif SC', 'SimSun', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
 
-  /* SECTION */
-  section { padding: 80px 5%; }
-  .section-title {
-    text-align: center; margin-bottom: 3rem;
-  }
-  .section-title h2 { font-size: 2rem; letter-spacing: 4px; margin-bottom: 0.5rem; }
-  .section-title p { color: var(--gray); font-size: 0.95rem; }
-  .divider {
-    width: 60px; height: 3px;
-    background: linear-gradient(90deg, var(--red), var(--gold));
-    margin: 0.8rem auto 0;
-  }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+    }
 
-  /* FEATURES */
-  .features { background: #fff; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-  .card {
-    border: 1px solid #e8e0d0; border-radius: 8px; padding: 2rem;
-    transition: transform .2s, box-shadow .2s;
-    position: relative; overflow: hidden;
-  }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
-  .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-  .card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--ink); letter-spacing: 2px; }
-  .card p { color: var(--gray); line-height: 1.8; font-size: 0.9rem; }
-  .card-tag {
-    display: inline-block; margin-top: 1rem;
-    padding: 0.2rem 0.8rem; border-radius: 20px;
-    font-size: 0.75rem; background: #fef3e2; color: var(--gold);
-    border: 1px solid var(--gold);
-  }
+    .logo {
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      font-weight: 700;
+    }
 
-  /* HOW IT WORKS */
-  .how { background: var(--cream); }
-  .steps { display: flex; gap: 0; flex-wrap: wrap; justify-content: center; }
-  .step {
-    flex: 1; min-width: 200px; max-width: 240px;
-    text-align: center; padding: 1.5rem 1rem;
-    position: relative;
-  }
-  .step:not(:last-child)::after {
-    content: '→'; position: absolute; right: -10px; top: 2rem;
-    font-size: 1.5rem; color: var(--gold);
-  }
-  .step-num {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: var(--red); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; font-weight: 700; margin: 0 auto 1rem;
-  }
-  .step h4 { font-size: 1rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
-  .step p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-  /* PRODUCTS */
-  .products { background: #fff; }
-  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-  .product-card {
-    border-radius: 8px; overflow: hidden;
-    border: 1px solid #e8e0d0; text-align: center;
-    transition: transform .2s;
-  }
-  .product-card:hover { transform: translateY(-4px); }
-  .product-img {
-    height: 140px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-  }
-  .product-card h4 { padding: 0.8rem 1rem 0.3rem; font-size: 1rem; letter-spacing: 1px; }
-  .product-card p { padding: 0 1rem 1rem; font-size: 0.8rem; color: var(--gray); }
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color .2s;
+    }
 
-  /* CTA */
-  .cta {
-    background: linear-gradient(135deg, var(--ink), #0f3460);
-    text-align: center; color: #fff;
-  }
-  .cta h2 { font-size: 2rem; letter-spacing: 4px; margin-bottom: 1rem; }
-  .cta p { color: #aaa; margin-bottom: 2rem; }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink); color: #666;
-    text-align: center; padding: 2rem;
-    font-size: 0.85rem; letter-spacing: 1px;
-  }
-  footer span { color: var(--gold); }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--ink) 0%, #16213e 60%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 5% 40px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  @media (max-width: 600px) {
-    .step:not(:last-child)::after { display: none; }
-    .nav-links { display: none; }
-  }
-</style>
+    .hero::before {
+      content: '書';
+      position: absolute;
+      font-size: 40vw;
+      color: rgba(255, 255, 255, 0.03);
+      font-weight: 900;
+      line-height: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: #fff;
+      letter-spacing: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #a93226;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* SECTION */
+    section {
+      padding: 80px 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      margin: 0.8rem auto 0;
+    }
+
+    /* FEATURES */
+    .features {
+      background: #fff;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      border: 1px solid #e8e0d0;
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--ink);
+      letter-spacing: 2px;
+    }
+
+    .card p {
+      color: var(--gray);
+      line-height: 1.8;
+      font-size: 0.9rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      background: #fef3e2;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      background: var(--cream);
+    }
+
+    .steps {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 240px;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -10px;
+      top: 2rem;
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+
+    .step h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* PRODUCTS */
+    .products {
+      background: #fff;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e8e0d0;
+      text-align: center;
+      transition: transform .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-img {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .product-card h4 {
+      padding: 0.8rem 1rem 0.3rem;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .product-card p {
+      padding: 0 1rem 1rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, var(--ink), #0f3460);
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      color: #aaa;
+      margin-bottom: 2rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: #666;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      transition: all .3s;
+    }
+
+    @media (max-width: 600px) {
+      .step:not(:last-child)::after {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 46, 0.98);
+        padding: 1rem 0;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 0.8rem 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="logo" href="index.html">翰墨方舟</a>
-  <ul class="nav-links">
-    <li><a href="teaching.html">AI教学</a></li>
-    <li><a href="creative.html">文创生成</a></li>
-    <li><a href="shop.html">文创电商</a></li>
-    <li><a href="community.html">社区</a></li>
-    <li><a href="profile.html">个人中心</a></li>
-    <li><a href="teaching.html" class="btn btn-primary" style="padding:0.4rem 1.2rem;border-radius:4px;">立即体验</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="index.html">翰墨方舟</a>
+    <button class="hamburger" id="menuBtn" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="teaching.html">AI教学</a></li>
+      <li><a href="creative.html">文创生成</a></li>
+      <li><a href="shop.html">文创电商</a></li>
+      <li><a href="community.html">社区</a></li>
+      <li><a href="profile.html">个人中心</a></li>
+      <li><a href="teaching.html" class="btn btn-primary" style="padding:0.4rem 1.2rem;border-radius:4px;">立即体验</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>翰墨<span>方舟</span></h1>
-    <p>以书法为舟，以科技为桨<br>AI辅助教学 · 一键文创生成 · 跨境文创电商</p>
-    <div class="btn-group">
-      <a href="#features" class="btn btn-primary">探索功能</a>
-      <a href="#how" class="btn btn-outline">了解流程</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>翰墨<span>方舟</span></h1>
+      <p>以书法为舟，以科技为桨<br>AI辅助教学 · 一键文创生成 · 跨境文创电商</p>
+      <div class="btn-group">
+        <a href="#features" class="btn btn-primary">探索功能</a>
+        <a href="#how" class="btn btn-outline">了解流程</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="section-title">
-    <h2>三大核心功能</h2>
-    <p>技术驱动体验，体验促进消费</p>
-    <div class="divider"></div>
-  </div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🖌️</div>
-      <h3>AI 辅助教学</h3>
-      <p>拍照上传练习作品，平台通过 OpenCV 提取字迹骨架，与专业书法家标准进行比对，提供个性化练习建议，实现低门槛、高效率的书法学习体验。</p>
-      <span class="card-tag">骨架比对 · 智能点评</span>
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-title">
+      <h2>三大核心功能</h2>
+      <p>技术驱动体验，体验促进消费</p>
+      <div class="divider"></div>
     </div>
-    <div class="card">
-      <div class="card-icon">✨</div>
-      <h3>一键文创生成</h3>
-      <p>输入文字或上传书法作品，从极简相框、中式卷轴、T恤印花、手机壳等模板中选择，AI 即时渲染产品预览图，满意即可一键下单。</p>
-      <span class="card-tag">AI渲染 · 即时预览</span>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🖌️</div>
+        <h3>AI 辅助教学</h3>
+        <p>拍照上传练习作品，平台通过 OpenCV 提取字迹骨架，与专业书法家标准进行比对，提供个性化练习建议，实现低门槛、高效率的书法学习体验。</p>
+        <span class="card-tag">骨架比对 · 智能点评</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>一键文创生成</h3>
+        <p>输入文字或上传书法作品，从极简相框、中式卷轴、T恤印花、手机壳等模板中选择，AI 即时渲染产品预览图，满意即可一键下单。</p>
+        <span class="card-tag">AI渲染 · 即时预览</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌏</div>
+        <h3>跨境文创电商</h3>
+        <p>分层产品体系覆盖新手包、进阶包、礼盒装、订阅盒等多种形式，通过跨境供应链实现全球配送，构建学习驱动消费的商业闭环。</p>
+        <span class="card-tag">全球配送 · 商业闭环</span>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">🌏</div>
-      <h3>跨境文创电商</h3>
-      <p>分层产品体系覆盖新手包、进阶包、礼盒装、订阅盒等多种形式，通过跨境供应链实现全球配送，构建学习驱动消费的商业闭环。</p>
-      <span class="card-tag">全球配送 · 商业闭环</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="section-title">
-    <h2>使用流程</h2>
-    <p>四步完成从练习到文创的全链路体验</p>
-    <div class="divider"></div>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h4>练习书法</h4>
-      <p>临摹字帖，完成书法练习</p>
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="section-title">
+      <h2>使用流程</h2>
+      <p>四步完成从练习到文创的全链路体验</p>
+      <div class="divider"></div>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h4>拍照上传</h4>
-      <p>拍照上传，AI 智能识别点评</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>练习书法</h4>
+        <p>临摹字帖，完成书法练习</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>拍照上传</h4>
+        <p>拍照上传，AI 智能识别点评</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>选择模板</h4>
+        <p>挑选心仪文创产品模板</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>一键下单</h4>
+        <p>预览满意，下单全球配送</p>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h4>选择模板</h4>
-      <p>挑选心仪文创产品模板</p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h4>一键下单</h4>
-      <p>预览满意，下单全球配送</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
-  <div class="section-title">
-    <h2>文创产品系列</h2>
-    <p>将书法之美融入日常生活</p>
-    <div class="divider"></div>
-  </div>
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-img" style="background:#fef9f0;">🖼️</div>
-      <h4>极简相框</h4>
-      <p>现代简约风格，书法装饰画</p>
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="section-title">
+      <h2>文创产品系列</h2>
+      <p>将书法之美融入日常生活</p>
+      <div class="divider"></div>
     </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#f5f0e8;">📜</div>
-      <h4>中式卷轴</h4>
-      <p>传统工艺，典雅收藏佳品</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img" style="background:#fef9f0;">🖼️</div>
+        <h4>极简相框</h4>
+        <p>现代简约风格，书法装饰画</p>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#f5f0e8;">📜</div>
+        <h4>中式卷轴</h4>
+        <p>传统工艺，典雅收藏佳品</p>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#f0f5ff;">👕</div>
+        <h4>T恤印花</h4>
+        <p>个性定制，穿出书法风尚</p>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#f5f5f5;">📱</div>
+        <h4>手机壳</h4>
+        <p>随身携带，展示书法之美</p>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#fff5f5;">🎁</div>
+        <h4>礼盒套装</h4>
+        <p>精美包装，馈赠佳选</p>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#f0fff5;">📦</div>
+        <h4>订阅盒</h4>
+        <p>每月惊喜，持续学习成长</p>
+      </div>
     </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#f0f5ff;">👕</div>
-      <h4>T恤印花</h4>
-      <p>个性定制，穿出书法风尚</p>
-    </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#f5f5f5;">📱</div>
-      <h4>手机壳</h4>
-      <p>随身携带，展示书法之美</p>
-    </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#fff5f5;">🎁</div>
-      <h4>礼盒套装</h4>
-      <p>精美包装，馈赠佳选</p>
-    </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#f0fff5;">📦</div>
-      <h4>订阅盒</h4>
-      <p>每月惊喜，持续学习成长</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA -->
-<section class="cta" id="cta">
-  <h2>开启书法新旅程</h2>
-  <p>加入翰墨方舟，让传统书法焕发现代光彩</p>
-  <a href="#" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 3rem;">立即体验</a>
-</section>
+  <!-- CTA -->
+  <section class="cta" id="cta">
+    <h2>开启书法新旅程</h2>
+    <p>加入翰墨方舟，让传统书法焕发现代光彩</p>
+    <a href="#" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 3rem;">立即体验</a>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 <span>翰墨方舟</span> · 书法学习与文创平台 · 传承经典，创造未来</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>翰墨方舟</span> · 书法学习与文创平台 · 传承经典，创造未来</p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('navLinks');
+    btn.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
 
 </body>
+
 </html>
