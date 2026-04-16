@@ -1,186 +1,268 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境文创电商 — 翰墨方舟</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.filter-btn {
-  padding: 0.4rem 1.2rem; border-radius: 20px; border: 1px solid #e8e0d0;
-  background: var(--white); cursor: pointer; font-size: 0.85rem;
-  font-family: inherit; transition: all .2s;
-}
-.filter-btn.active, .filter-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跨境文创电商 — 翰墨方舟</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
 
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
-.product-card { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
-.product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
-.product-body { padding: 1rem; }
-.product-body h4 { font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
-.product-body p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; margin-bottom: 0.8rem; }
-.product-footer { display: flex; align-items: center; justify-content: space-between; }
-.price { color: var(--red); font-weight: 700; font-size: 1.1rem; }
-.recommend-badge {
-  display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px;
-  background: #fef3e2; color: var(--gold); font-size: 0.72rem; border: 1px solid var(--gold);
-  margin-bottom: 0.4rem;
-}
-</style>
+    .filter-btn {
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid #e8e0d0;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all .2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid #e8e0d0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .product-body {
+      padding: 1rem;
+    }
+
+    .product-body h4 {
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-body p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price {
+      color: var(--red);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .recommend-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      background: #fef3e2;
+      color: var(--gold);
+      font-size: 0.72rem;
+      border: 1px solid var(--gold);
+      margin-bottom: 0.4rem;
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <a class="logo" href="index.html">翰墨方舟</a>
-  <ul class="nav-links">
-    <li><a href="teaching.html">AI教学</a></li>
-    <li><a href="creative.html">文创生成</a></li>
-    <li><a href="shop.html" class="active">文创电商</a></li>
-    <li><a href="community.html">社区</a></li>
-    <li><a href="profile.html">个人中心</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a class="logo" href="index.html">翰墨方舟</a>
+    <ul class="nav-links">
+      <li><a href="teaching.html">AI教学</a></li>
+      <li><a href="creative.html">文创生成</a></li>
+      <li><a href="shop.html" class="active">文创电商</a></li>
+      <li><a href="community.html">社区</a></li>
+      <li><a href="profile.html">个人中心</a></li>
+    </ul>
+  </nav>
 
-<div class="page-header">
-  <h1>跨境文创电商</h1>
-  <p>文房用品 · 书法文创 · 全球配送</p>
-</div>
-
-<div class="section section-alt">
-  <div class="section-title">
-    <h2>智能推荐</h2>
-    <p>根据你当前学习阶段（楷书·偏旁练习）为你推荐</p>
-    <div class="divider"></div>
+  <div class="page-header">
+    <h1>跨境文创电商</h1>
+    <p>文房用品 · 书法文创 · 全球配送</p>
   </div>
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-img" style="background:#fef9f0;">🖌️</div>
-      <div class="product-body">
-        <div class="recommend-badge">学习推荐</div>
-        <h4>楷书入门毛笔套装</h4>
-        <p>适合偏旁练习阶段，含狼毫笔×2、墨汁、练习纸</p>
-        <div class="product-footer">
-          <span class="price">¥89</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">加入购物车</button>
+
+  <div class="section section-alt">
+    <div class="section-title">
+      <h2>智能推荐</h2>
+      <p>根据你当前学习阶段（楷书·偏旁练习）为你推荐</p>
+      <div class="divider"></div>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img" style="background:#fef9f0;">🖌️</div>
+        <div class="product-body">
+          <div class="recommend-badge">学习推荐</div>
+          <h4>楷书入门毛笔套装</h4>
+          <p>适合偏旁练习阶段，含狼毫笔×2、墨汁、练习纸</p>
+          <div class="product-footer">
+            <span class="price">¥89</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#f5f0e8;">📋</div>
+        <div class="product-body">
+          <div class="recommend-badge">学习推荐</div>
+          <h4>偏旁部首临摹字帖</h4>
+          <p>专为偏旁阶段设计，含常用200个偏旁示范</p>
+          <div class="product-footer">
+            <span class="price">¥35</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">加入购物车</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-img" style="background:#f5f0e8;">📋</div>
-      <div class="product-body">
-        <div class="recommend-badge">学习推荐</div>
-        <h4>偏旁部首临摹字帖</h4>
-        <p>专为偏旁阶段设计，含常用200个偏旁示范</p>
-        <div class="product-footer">
-          <span class="price">¥35</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">加入购物车</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <h2>全部商品</h2>
+      <p>文房用品与书法文创，构建学习消费闭环</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProducts(this,'all')">全部</button>
+      <button class="filter-btn" onclick="filterProducts(this,'stationery')">文房用品</button>
+      <button class="filter-btn" onclick="filterProducts(this,'creative')">书法文创</button>
+      <button class="filter-btn" onclick="filterProducts(this,'bundle')">套装礼盒</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-cat="stationery">
+        <div class="product-img" style="background:#fef9f0;">🖌️</div>
+        <div class="product-body">
+          <h4>楷书入门毛笔套装</h4>
+          <p>狼毫笔×2、墨汁、练习纸，适合初学者</p>
+          <div class="product-footer"><span class="price">¥89</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="stationery">
+        <div class="product-img" style="background:#f5f0e8;">📋</div>
+        <div class="product-body">
+          <h4>临摹字帖合集</h4>
+          <p>楷书、行书、隶书三册，系统学习必备</p>
+          <div class="product-footer"><span class="price">¥68</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="creative">
+        <div class="product-img" style="background:#fff5f5;">🖼️</div>
+        <div class="product-body">
+          <h4>书法定制相框</h4>
+          <p>上传作品一键生成，A4尺寸实木相框</p>
+          <div class="product-footer"><span class="price">¥128</span>
+            <button class="btn btn-primary btn-sm" onclick="location.href='creative.html'">定制</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="creative">
+        <div class="product-img" style="background:#f0f5ff;">🪭</div>
+        <div class="product-body">
+          <h4>书法定制折扇</h4>
+          <p>真丝扇面，个人书法作品印制</p>
+          <div class="product-footer"><span class="price">¥158</span>
+            <button class="btn btn-primary btn-sm" onclick="location.href='creative.html'">定制</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="bundle">
+        <div class="product-img" style="background:#f0fff5;">🎁</div>
+        <div class="product-body">
+          <h4>新手包</h4>
+          <p>入门兼毫笔一支、宣纸20张、电子字帖，开箱即学</p>
+          <div class="product-footer"><span class="price">$9.9</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="bundle">
+        <div class="product-img" style="background:#fef9f0;">🖌️</div>
+        <div class="product-body">
+          <h4>名家包</h4>
+          <p>仿古狼毫、洒金宣纸、兰亭序描红，感受名家风范</p>
+          <div class="product-footer"><span class="price">$29.9</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="bundle">
+        <div class="product-img" style="background:#fff5f5;">🎀</div>
+        <div class="product-body">
+          <h4>礼盒装</h4>
+          <p>定制挂画、毛笔、文化手册、精美礼盒，送礼首选</p>
+          <div class="product-footer"><span class="price">$69.9</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-cat="bundle">
+        <div class="product-img" style="background:#f0f5ff;">📦</div>
+        <div class="product-body">
+          <h4>订阅盒</h4>
+          <p>每月主题工具 + 文化读物 + 创作任务，持续精进</p>
+          <div class="product-footer"><span class="price">$29.9/月</span>
+            <button class="btn btn-primary btn-sm" onclick="alert('订阅功能演示')">订阅</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="section-title">
-    <h2>全部商品</h2>
-    <p>文房用品与书法文创，构建学习消费闭环</p>
-    <div class="divider"></div>
-  </div>
+  <footer>
+    <p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
+  </footer>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterProducts(this,'all')">全部</button>
-    <button class="filter-btn" onclick="filterProducts(this,'stationery')">文房用品</button>
-    <button class="filter-btn" onclick="filterProducts(this,'creative')">书法文创</button>
-    <button class="filter-btn" onclick="filterProducts(this,'bundle')">套装礼盒</button>
-  </div>
-
-  <div class="product-grid" id="productGrid">
-    <div class="product-card" data-cat="stationery">
-      <div class="product-img" style="background:#fef9f0;">🖌️</div>
-      <div class="product-body">
-        <h4>楷书入门毛笔套装</h4>
-        <p>狼毫笔×2、墨汁、练习纸，适合初学者</p>
-        <div class="product-footer"><span class="price">¥89</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="stationery">
-      <div class="product-img" style="background:#f5f0e8;">📋</div>
-      <div class="product-body">
-        <h4>临摹字帖合集</h4>
-        <p>楷书、行书、隶书三册，系统学习必备</p>
-        <div class="product-footer"><span class="price">¥68</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="creative">
-      <div class="product-img" style="background:#fff5f5;">🖼️</div>
-      <div class="product-body">
-        <h4>书法定制相框</h4>
-        <p>上传作品一键生成，A4尺寸实木相框</p>
-        <div class="product-footer"><span class="price">¥128</span>
-          <button class="btn btn-primary btn-sm" onclick="location.href='creative.html'">定制</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="creative">
-      <div class="product-img" style="background:#f0f5ff;">🪭</div>
-      <div class="product-body">
-        <h4>书法定制折扇</h4>
-        <p>真丝扇面，个人书法作品印制</p>
-        <div class="product-footer"><span class="price">¥158</span>
-          <button class="btn btn-primary btn-sm" onclick="location.href='creative.html'">定制</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="bundle">
-      <div class="product-img" style="background:#f0fff5;">🎁</div>
-      <div class="product-body">
-        <h4>新手包</h4>
-        <p>入门兼毫笔一支、宣纸20张、电子字帖，开箱即学</p>
-        <div class="product-footer"><span class="price">$9.9</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="bundle">
-      <div class="product-img" style="background:#fef9f0;">🖌️</div>
-      <div class="product-body">
-        <h4>名家包</h4>
-        <p>仿古狼毫、洒金宣纸、兰亭序描红，感受名家风范</p>
-        <div class="product-footer"><span class="price">$29.9</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="bundle">
-      <div class="product-img" style="background:#fff5f5;">🎀</div>
-      <div class="product-body">
-        <h4>礼盒装</h4>
-        <p>定制挂画、毛笔、文化手册、精美礼盒，送礼首选</p>
-        <div class="product-footer"><span class="price">$69.9</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('加入购物车')">购买</button></div>
-      </div>
-    </div>
-    <div class="product-card" data-cat="bundle">
-      <div class="product-img" style="background:#f0f5ff;">📦</div>
-      <div class="product-body">
-        <h4>订阅盒</h4>
-        <p>每月主题工具 + 文化读物 + 创作任务，持续精进</p>
-        <div class="product-footer"><span class="price">$29.9/月</span>
-          <button class="btn btn-primary btn-sm" onclick="alert('订阅功能演示')">订阅</button></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
-
-<script>
-function filterProducts(btn, cat) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#productGrid .product-card').forEach(card => {
-    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
-  });
-}
-</script>
+  <script>
+    function filterProducts(btn, cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#productGrid .product-card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+      });
+    }
+  </script>
 </body>
+
 </html>
