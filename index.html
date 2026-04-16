@@ -68,7 +68,7 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--ink) 0%, #16213e 60%, #0f3460 100%);
+      background: url('images/cover.jpg') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,15 +79,10 @@
     }
 
     .hero::before {
-      content: '書';
+      content: '';
       position: absolute;
-      font-size: 40vw;
-      color: rgba(255, 255, 255, 0.03);
-      font-weight: 900;
-      line-height: 1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 10, 20, 0.15) 100%);
       pointer-events: none;
     }
 
@@ -97,22 +92,25 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      color: #fff;
-      letter-spacing: 8px;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: #1a1a1a;
+      letter-spacing: 12px;
       margin-bottom: 1rem;
+      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.4);
+      font-weight: 900;
     }
 
     .hero h1 span {
-      color: var(--gold);
+      color: #8b5e00;
     }
 
     .hero p {
-      font-size: 1.1rem;
-      color: #aaa;
+      font-size: 1.15rem;
+      color: #2a2a2a;
       max-width: 600px;
       margin: 0 auto 2.5rem;
-      line-height: 1.8;
+      line-height: 2;
+      letter-spacing: 2px;
     }
 
     .btn-group {
@@ -120,6 +118,7 @@
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 42vh;
     }
 
     .btn {
@@ -133,13 +132,13 @@
     }
 
     .btn-primary {
-      background: var(--red);
+      background: rgba(60, 100, 90, 0.85);
       color: #fff;
       border: none;
     }
 
     .btn-primary:hover {
-      background: #a93226;
+      background: rgba(40, 80, 70, 0.95);
       transform: translateY(-2px);
     }
 
@@ -439,8 +438,6 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <h1>翰墨<span>方舟</span></h1>
-      <p>以书法为舟，以科技为桨<br>AI辅助教学 · 一键文创生成 · 跨境文创电商</p>
       <div class="btn-group">
         <a href="#features" class="btn btn-primary">探索功能</a>
         <a href="#how" class="btn btn-outline">了解流程</a>
