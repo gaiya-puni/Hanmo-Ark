@@ -12,23 +12,23 @@ body { font-family: 'Noto Serif SC', 'SimSun', serif; background: var(--cream); 
 /* NAV */
 nav {
   position: fixed; top: 0; width: 100%; z-index: 100;
-  background: rgba(26,26,46,0.97); backdrop-filter: blur(8px);
+  background: rgba(180,210,215,0.95); backdrop-filter: blur(8px);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 5%; height: 64px;
 }
 .logo { color: var(--gold); font-size: 1.3rem; letter-spacing: 4px; font-weight: 700; text-decoration: none; }
 .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-.nav-links a { color: #ccc; text-decoration: none; font-size: 0.9rem; transition: color .2s; }
+.nav-links a { color: #1a3a40; text-decoration: none; font-size: 0.9rem; transition: color .2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
 /* PAGE HEADER */
 .page-header {
   padding: 120px 5% 60px;
-  background: linear-gradient(135deg, var(--ink) 0%, #16213e 100%);
+  background: linear-gradient(135deg, #c2dede 0%, #daeaea 100%);
   text-align: center; color: var(--white);
 }
 .page-header h1 { font-size: 2.2rem; letter-spacing: 6px; margin-bottom: 0.8rem; }
-.page-header p { color: #aaa; font-size: 1rem; }
+.page-header p { color: #1a3a40; font-size: 1rem; }
 
 /* SECTION */
 .section { padding: 60px 5%; }
@@ -69,7 +69,7 @@ nav {
 
 /* FOOTER */
 footer {
-  background: var(--ink); color: #555;
+  background: #a8d4d8; color: #1a3a40;
   text-align: center; padding: 1.5rem;
   font-size: 0.82rem; letter-spacing: 1px;
 }
