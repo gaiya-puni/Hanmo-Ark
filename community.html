@@ -1,190 +1,392 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>书法文化社区 — 翰墨方舟</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.community-layout { display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; }
-@media(max-width:900px){ .community-layout { grid-template-columns: 1fr; } }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>书法文化社区 — 翰墨方舟</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .community-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.5rem;
+    }
 
-.post-card { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
-.post-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
-.avatar-sm { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-.post-meta h4 { font-size: 0.9rem; }
-.post-meta p { font-size: 0.75rem; color: var(--gray); }
-.post-img { width: 100%; height: 180px; background: #f5f0e8; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 4rem; margin-bottom: 0.8rem; }
-.post-text { font-size: 0.88rem; color: var(--gray); line-height: 1.7; margin-bottom: 0.8rem; }
-.post-actions { display: flex; gap: 1.2rem; }
-.action-btn { background: none; border: none; cursor: pointer; font-size: 0.82rem; color: var(--gray); font-family: inherit; display: flex; align-items: center; gap: 0.3rem; transition: color .2s; }
-.action-btn:hover { color: var(--red); }
+    @media(max-width:900px) {
+      .community-layout {
+        grid-template-columns: 1fr;
+      }
+    }
 
-.activity-card { background: var(--white); border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
-.activity-card h4 { font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
-.activity-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; margin-bottom: 0.8rem; }
-.activity-badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.72rem; background: #fff5f5; color: var(--red); border: 1px solid var(--red); margin-bottom: 0.5rem; }
+    .post-card {
+      background: var(--white);
+      border: 1px solid #e8e0d0;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
 
-.top-creator { display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem 0; border-bottom: 1px solid #f0ebe0; }
-.top-creator:last-child { border-bottom: none; }
-.rank { width: 22px; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--gray); }
-.rank.gold { color: var(--gold); }
-.creator-info { flex: 1; }
-.creator-info h5 { font-size: 0.85rem; }
-.creator-info p { font-size: 0.75rem; color: var(--gray); }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
 
-.upload-btn { width: 100%; padding: 0.8rem; background: var(--cream); border: 2px dashed #d4a017; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem; color: var(--gray); margin-bottom: 1.2rem; transition: background .2s; }
-.upload-btn:hover { background: #fef9f0; }
-</style>
+    .avatar-sm {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .post-meta h4 {
+      font-size: 0.9rem;
+    }
+
+    .post-meta p {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .post-img {
+      width: 100%;
+      height: 180px;
+      background: #f5f0e8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+    }
+
+    .post-text {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--gray);
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color .2s;
+    }
+
+    .action-btn:hover {
+      color: var(--red);
+    }
+
+    .activity-card {
+      background: var(--white);
+      border: 1px solid #e8e0d0;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .activity-card h4 {
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity-card p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .activity-badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      background: #fff5f5;
+      color: var(--red);
+      border: 1px solid var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .top-creator {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f0ebe0;
+    }
+
+    .top-creator:last-child {
+      border-bottom: none;
+    }
+
+    .rank {
+      width: 22px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gray);
+    }
+
+    .rank.gold {
+      color: var(--gold);
+    }
+
+    .creator-info {
+      flex: 1;
+    }
+
+    .creator-info h5 {
+      font-size: 0.85rem;
+    }
+
+    .creator-info p {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .upload-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--cream);
+      border: 2px dashed #d4a017;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+      transition: background .2s;
+    }
+
+    .upload-btn:hover {
+      background: #fef9f0;
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <a class="logo" href="index.html">翰墨方舟</a>
-  <ul class="nav-links">
-    <li><a href="teaching.html">AI教学</a></li>
-    <li><a href="creative.html">文创生成</a></li>
-    <li><a href="shop.html">文创电商</a></li>
-    <li><a href="community.html" class="active">社区</a></li>
-    <li><a href="profile.html">个人中心</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a class="logo" href="index.html">翰墨方舟</a>
+    <ul class="nav-links">
+      <li><a href="teaching.html">AI教学</a></li>
+      <li><a href="creative.html">文创生成</a></li>
+      <li><a href="shop.html">文创电商</a></li>
+      <li><a href="community.html" class="active">社区</a></li>
+      <li><a href="profile.html">个人中心</a></li>
+    </ul>
+  </nav>
 
-<div class="page-header">
-  <h1>书法文化社区</h1>
-  <p>分享作品 · 交流切磋 · 共同成长</p>
-</div>
+  <div class="page-header">
+    <h1>书法文化社区</h1>
+    <p>分享作品 · 交流切磋 · 共同成长</p>
+  </div>
 
-<div class="section">
-  <div class="community-layout">
-    <!-- 主内容 -->
-    <div>
-      <button class="upload-btn" onclick="alert('发布功能演示')">+ 发布我的书法作品</button>
+  <div class="section">
+    <div class="community-layout">
+      <!-- 主内容 -->
+      <div>
+        <button class="upload-btn" onclick="alert('发布功能演示')">+ 发布我的书法作品</button>
 
-      <div class="post-card">
-        <div class="post-header">
-          <div class="avatar-sm">云</div>
-          <div class="post-meta"><h4>云墨居士</h4><p>2小时前 · 楷书练习</p></div>
+        <div class="post-card">
+          <div class="post-header">
+            <div class="avatar-sm">云</div>
+            <div class="post-meta">
+              <h4>云墨居士</h4>
+              <p>2小时前 · 行书练习</p>
+            </div>
+          </div>
+          <div class="post-img"><img src="images/community/1.jpg"
+              style="max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;"></div>
+          <div class="post-text">练习永字有一段时间，感觉目前的写法还不够自然，请各位老师指点！</div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="like(this)">👍 <span>24</span></button>
+            <button class="action-btn">💬 <span>8</span></button>
+            <button class="action-btn">↗ 分享</button>
+          </div>
         </div>
-        <div class="post-img">永</div>
-        <div class="post-text">练习"永字八法"第三天，感觉侧锋和中锋的转换还不够自然，请各位老师指点！</div>
-        <div class="post-actions">
-          <button class="action-btn" onclick="like(this)">👍 <span>24</span></button>
-          <button class="action-btn">💬 <span>8</span></button>
-          <button class="action-btn">↗ 分享</button>
+
+        <div class="post-card">
+          <div class="post-header">
+            <div class="avatar-sm" style="background:#c0392b;color:#fff;">山</div>
+            <div class="post-meta">
+              <h4>山水间</h4>
+              <p>5小时前 · 楷书练习</p>
+            </div>
+          </div>
+          <div class="post-img"><img src="images/community/2.png" alt="山高水长"
+              style="width:100%;height:100%;object-fit:contain;"></div>
+          <div class="post-text">山高水长四个字，练习了两周，终于有点感觉了，用翰墨方舟的AI测评打了88分，继续加油！</div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="like(this)">👍 <span>56</span></button>
+            <button class="action-btn">💬 <span>15</span></button>
+            <button class="action-btn">↗ 分享</button>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <div class="post-header">
+            <div class="avatar-sm" style="background:#0f3460;color:#fff;">竹</div>
+            <div class="post-meta">
+              <h4>竹影清风</h4>
+              <p>昨天 · 楷书练习</p>
+            </div>
+          </div>
+          <div class="post-img"><img src="images/community/3.jpg" alt="福"
+              style="width:100%;height:100%;object-fit:contain;"></div>
+          <div class="post-text">楷书福字，准备做成定制相框送给父母，学习效果超出预期</div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="like(this)">👍 <span>103</span></button>
+            <button class="action-btn">💬 <span>32</span></button>
+            <button class="action-btn">↗ 分享</button>
+          </div>
         </div>
       </div>
 
-      <div class="post-card">
-        <div class="post-header">
-          <div class="avatar-sm" style="background:#c0392b;color:#fff;">山</div>
-          <div class="post-meta"><h4>山水间</h4><p>5小时前 · 行书练习</p></div>
+      <!-- 侧边栏 -->
+      <div>
+        <div class="activity-card">
+          <span class="activity-badge">进行中</span>
+          <h4>四月打卡挑战</h4>
+          <p>坚持21天每日练习打卡，完成即可获得新手文房套装奖励。</p>
+          <p style="font-size:0.78rem;color:var(--red);">已有 1,248 人参与</p>
+          <a href="teaching.html" class="btn btn-primary btn-sm">立即参与</a>
         </div>
-        <div class="post-img" style="font-size:2.5rem;letter-spacing:8px;">山高水长</div>
-        <div class="post-text">行书"山高水长"，练习了两周，终于有点感觉了。用翰墨方舟的AI测评打了78分，继续加油！</div>
-        <div class="post-actions">
-          <button class="action-btn" onclick="like(this)">👍 <span>56</span></button>
-          <button class="action-btn">💬 <span>15</span></button>
-          <button class="action-btn">↗ 分享</button>
-        </div>
-      </div>
 
-      <div class="post-card">
-        <div class="post-header">
-          <div class="avatar-sm" style="background:#0f3460;color:#fff;">竹</div>
-          <div class="post-meta"><h4>竹影清风</h4><p>昨天 · 隶书练习</p></div>
+        <div class="activity-card">
+          <span class="activity-badge" style="background:#f0f5ff;color:#0f3460;border-color:#0f3460;">即将开始</span>
+          <h4>五月主题创作：春</h4>
+          <p>以"春"为主题创作书法作品，优秀作品将展示于首页并获得积分奖励。</p>
+          <p style="font-size:0.78rem;color:var(--gray);">5月1日开始</p>
         </div>
-        <div class="post-img" style="font-size:3rem;">福</div>
-        <div class="post-text">隶书"福"字，准备做成定制相框送给父母。一键文创生成真的很方便，效果超出预期！</div>
-        <div class="post-actions">
-          <button class="action-btn" onclick="like(this)">👍 <span>103</span></button>
-          <button class="action-btn">💬 <span>32</span></button>
-          <button class="action-btn">↗ 分享</button>
-        </div>
-      </div>
-    </div>
 
-    <!-- 侧边栏 -->
-    <div>
-      <div class="activity-card">
-        <span class="activity-badge">进行中</span>
-        <h4>四月打卡挑战</h4>
-        <p>坚持21天每日练习打卡，完成即可获得新手文房套装奖励。</p>
-        <p style="font-size:0.78rem;color:var(--red);">已有 1,248 人参与</p>
-        <a href="teaching.html" class="btn btn-primary btn-sm">立即参与</a>
-      </div>
-
-      <div class="activity-card">
-        <span class="activity-badge" style="background:#f0f5ff;color:#0f3460;border-color:#0f3460;">即将开始</span>
-        <h4>五月主题创作：春</h4>
-        <p>以"春"为主题创作书法作品，优秀作品将展示于首页并获得积分奖励。</p>
-        <p style="font-size:0.78rem;color:var(--gray);">5月1日开始</p>
-      </div>
-
-      <div class="activity-card">
-        <h4 style="margin-bottom:1rem;">优秀创作者</h4>
-        <div class="top-creator">
-          <div class="rank gold">1</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;">竹</div>
-          <div class="creator-info"><h5>竹影清风</h5><p>获赞 1,203</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank gold">2</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#c0392b;color:#fff;">山</div>
-          <div class="creator-info"><h5>山水间</h5><p>获赞 876</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank gold">3</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;">云</div>
-          <div class="creator-info"><h5>云墨居士</h5><p>获赞 542</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">4</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#0f3460;color:#fff;">松</div>
-          <div class="creator-info"><h5>松风书院</h5><p>获赞 498</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">5</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#2e7d32;color:#fff;">梅</div>
-          <div class="creator-info"><h5>梅骨傲雪</h5><p>获赞 431</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">6</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#6a1b9a;color:#fff;">兰</div>
-          <div class="creator-info"><h5>兰亭雅集</h5><p>获赞 387</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">7</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#bf360c;color:#fff;">石</div>
-          <div class="creator-info"><h5>石砚耕墨</h5><p>获赞 312</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">8</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#00695c;color:#fff;">荷</div>
-          <div class="creator-info"><h5>荷塘月色</h5><p>获赞 276</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">9</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#4527a0;color:#fff;">鹤</div>
-          <div class="creator-info"><h5>鹤鸣九皋</h5><p>获赞 241</p></div>
-        </div>
-        <div class="top-creator">
-          <div class="rank">10</div>
-          <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#558b2f;color:#fff;">竹</div>
-          <div class="creator-info"><h5>竹节清高</h5><p>获赞 198</p></div>
+        <div class="activity-card">
+          <h4 style="margin-bottom:1rem;">优秀创作者</h4>
+          <div class="top-creator">
+            <div class="rank gold">1</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;">竹</div>
+            <div class="creator-info">
+              <h5>竹影清风</h5>
+              <p>获赞 1,203</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank gold">2</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#c0392b;color:#fff;">山
+            </div>
+            <div class="creator-info">
+              <h5>山水间</h5>
+              <p>获赞 876</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank gold">3</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;">云</div>
+            <div class="creator-info">
+              <h5>云墨居士</h5>
+              <p>获赞 542</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">4</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#0f3460;color:#fff;">松
+            </div>
+            <div class="creator-info">
+              <h5>松风书院</h5>
+              <p>获赞 498</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">5</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#2e7d32;color:#fff;">梅
+            </div>
+            <div class="creator-info">
+              <h5>梅骨傲雪</h5>
+              <p>获赞 431</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">6</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#6a1b9a;color:#fff;">兰
+            </div>
+            <div class="creator-info">
+              <h5>兰亭雅集</h5>
+              <p>获赞 387</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">7</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#bf360c;color:#fff;">石
+            </div>
+            <div class="creator-info">
+              <h5>石砚耕墨</h5>
+              <p>获赞 312</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">8</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#00695c;color:#fff;">荷
+            </div>
+            <div class="creator-info">
+              <h5>荷塘月色</h5>
+              <p>获赞 276</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">9</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#4527a0;color:#fff;">鹤
+            </div>
+            <div class="creator-info">
+              <h5>鹤鸣九皋</h5>
+              <p>获赞 241</p>
+            </div>
+          </div>
+          <div class="top-creator">
+            <div class="rank">10</div>
+            <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;background:#558b2f;color:#fff;">竹
+            </div>
+            <div class="creator-info">
+              <h5>竹节清高</h5>
+              <p>获赞 198</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
+  <footer>
+    <p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
+  </footer>
 
-<script>
-function like(btn) {
-  const span = btn.querySelector('span');
-  span.textContent = parseInt(span.textContent) + 1;
-  btn.style.color = 'var(--red)';
-}
-</script>
+  <script>
+    function like(btn) {
+      const span = btn.querySelector('span');
+      span.textContent = parseInt(span.textContent) + 1;
+      btn.style.color = 'var(--red)';
+    }
+  </script>
 </body>
+
 </html>
