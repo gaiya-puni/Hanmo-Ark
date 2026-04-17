@@ -188,42 +188,41 @@
 
 <body>
   <nav>
-    <a class="logo" href="index.html">翰墨方舟</a>
+    <a class="logo" href="index.html" data-i18n="logo">翰墨方舟</a>
     <ul class="nav-links">
-      <li><a href="teaching.html">AI教学</a></li>
-      <li><a href="creative.html">文创生成</a></li>
-      <li><a href="shop.html">文创电商</a></li>
-      <li><a href="community.html" class="active">社区</a></li>
-      <li><a href="profile.html">个人中心</a></li>
+      <li><a href="teaching.html" data-i18n="nav_teaching">AI教学</a></li>
+      <li><a href="creative.html" data-i18n="nav_creative">文创生成</a></li>
+      <li><a href="shop.html" data-i18n="nav_shop">文创电商</a></li>
+      <li><a href="community.html" class="active" data-i18n="nav_community">社区</a></li>
+      <li><a href="profile.html" data-i18n="nav_profile">个人中心</a></li>
     </ul>
   </nav>
 
   <div class="page-header">
-    <h1>书法文化社区</h1>
-    <p>分享作品 · 交流切磋 · 共同成长</p>
+    <h1 data-i18n="community_title">书法文化社区</h1>
+    <p data-i18n="community_sub">分享作品 · 交流切磋 · 共同成长</p>
   </div>
 
   <div class="section">
     <div class="community-layout">
       <!-- 主内容 -->
       <div>
-        <button class="upload-btn" onclick="alert('发布功能演示')">+ 发布我的书法作品</button>
+        <button class="upload-btn" onclick="alert('发布功能演示')" data-i18n="post_btn">+ 发布我的书法作品</button>
 
         <div class="post-card">
           <div class="post-header">
             <div class="avatar-sm">云</div>
             <div class="post-meta">
-              <h4>云墨居士</h4>
-              <p>2小时前 · 行书练习</p>
+              <h4 data-i18n="post1_name">云墨居士</h4>
+              <p data-i18n="post1_time">2小时前 · 行书练习</p>
             </div>
           </div>
-          <div class="post-img"><img src="images/community/1.jpg"
-              style="max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;"></div>
-          <div class="post-text">练习永字有一段时间，感觉目前的写法还不够自然，请各位老师指点！</div>
+          <div class="post-img"><img src="images/community/1.jpg" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;"></div>
+          <div class="post-text" data-i18n="post1_text">练习永字有一段时间，感觉目前的写法还不够自然，请各位老师指点！</div>
           <div class="post-actions">
             <button class="action-btn" onclick="like(this)">👍 <span>24</span></button>
             <button class="action-btn">💬 <span>8</span></button>
-            <button class="action-btn">↗ 分享</button>
+            <button class="action-btn" data-i18n="share">↗ 分享</button>
           </div>
         </div>
 
@@ -231,17 +230,16 @@
           <div class="post-header">
             <div class="avatar-sm" style="background:#c0392b;color:#fff;">山</div>
             <div class="post-meta">
-              <h4>山水间</h4>
-              <p>5小时前 · 楷书练习</p>
+              <h4 data-i18n="post2_name">山水间</h4>
+              <p data-i18n="post2_time">5小时前 · 楷书练习</p>
             </div>
           </div>
-          <div class="post-img"><img src="images/community/2.png" alt="山高水长"
-              style="width:100%;height:100%;object-fit:contain;"></div>
-          <div class="post-text">山高水长四个字，练习了两周，终于有点感觉了，用翰墨方舟的AI测评打了88分，继续加油！</div>
+          <div class="post-img"><img src="images/community/2.png" alt="山高水长" style="width:100%;height:100%;object-fit:contain;"></div>
+          <div class="post-text" data-i18n="post2_text">山高水长四个字，练习了两周，终于有点感觉了，用翰墨方舟的AI测评打了88分，继续加油！</div>
           <div class="post-actions">
             <button class="action-btn" onclick="like(this)">👍 <span>56</span></button>
             <button class="action-btn">💬 <span>15</span></button>
-            <button class="action-btn">↗ 分享</button>
+            <button class="action-btn" data-i18n="share">↗ 分享</button>
           </div>
         </div>
 
@@ -249,17 +247,16 @@
           <div class="post-header">
             <div class="avatar-sm" style="background:#0f3460;color:#fff;">竹</div>
             <div class="post-meta">
-              <h4>竹影清风</h4>
-              <p>昨天 · 楷书练习</p>
+              <h4 data-i18n="post3_name">竹影清风</h4>
+              <p data-i18n="post3_time">昨天 · 楷书练习</p>
             </div>
           </div>
-          <div class="post-img"><img src="images/community/3.jpg" alt="福"
-              style="width:100%;height:100%;object-fit:contain;"></div>
-          <div class="post-text">楷书福字，准备做成定制相框送给父母，学习效果超出预期</div>
+          <div class="post-img"><img src="images/community/3.jpg" alt="福" style="width:100%;height:100%;object-fit:contain;"></div>
+          <div class="post-text" data-i18n="post3_text">楷书福字，准备做成定制相框送给父母，学习效果超出预期</div>
           <div class="post-actions">
             <button class="action-btn" onclick="like(this)">👍 <span>103</span></button>
             <button class="action-btn">💬 <span>32</span></button>
-            <button class="action-btn">↗ 分享</button>
+            <button class="action-btn" data-i18n="share">↗ 分享</button>
           </div>
         </div>
       </div>
@@ -267,22 +264,22 @@
       <!-- 侧边栏 -->
       <div>
         <div class="activity-card">
-          <span class="activity-badge">进行中</span>
-          <h4>四月打卡挑战</h4>
-          <p>坚持21天每日练习打卡，完成即可获得新手文房套装奖励。</p>
-          <p style="font-size:0.78rem;color:var(--red);">已有 1,248 人参与</p>
-          <a href="teaching.html" class="btn btn-primary btn-sm">立即参与</a>
+          <span class="activity-badge" data-i18n="activity1_badge">进行中</span>
+          <h4 data-i18n="activity1_title">四月打卡挑战</h4>
+          <p data-i18n="activity1_desc">坚持21天每日练习打卡，完成即可获得新手文房套装奖励。</p>
+          <p style="font-size:0.78rem;color:var(--red);" data-i18n="activity1_count">已有 1,248 人参与</p>
+          <a href="teaching.html" class="btn btn-primary btn-sm" data-i18n="activity1_btn">立即参与</a>
         </div>
 
         <div class="activity-card">
-          <span class="activity-badge" style="background:#f0f5ff;color:#0f3460;border-color:#0f3460;">即将开始</span>
-          <h4>五月主题创作：春</h4>
-          <p>以"春"为主题创作书法作品，优秀作品将展示于首页并获得积分奖励。</p>
-          <p style="font-size:0.78rem;color:var(--gray);">5月1日开始</p>
+          <span class="activity-badge" style="background:#f0f5ff;color:#0f3460;border-color:#0f3460;" data-i18n="activity2_badge">即将开始</span>
+          <h4 data-i18n="activity2_title">五月主题创作：春</h4>
+          <p data-i18n="activity2_desc">以"春"为主题创作书法作品，优秀作品将展示于首页并获得积分奖励。</p>
+          <p style="font-size:0.78rem;color:var(--gray);" data-i18n="activity2_date">5月1日开始</p>
         </div>
 
         <div class="activity-card">
-          <h4 style="margin-bottom:1rem;">优秀创作者</h4>
+          <h4 style="margin-bottom:1rem;" data-i18n="top_creators">优秀创作者</h4>
           <div class="top-creator">
             <div class="rank gold">1</div>
             <div class="avatar-sm" style="width:30px;height:30px;font-size:0.85rem;">竹</div>
@@ -377,15 +374,26 @@
   </div>
 
   <footer>
-    <p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
+    <p id="footerText">© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
   </footer>
 
+  <script src="lang.js"></script>
   <script>
     function like(btn) {
       const span = btn.querySelector('span');
       span.textContent = parseInt(span.textContent) + 1;
       btn.style.color = 'var(--red)';
     }
+    function applyLang() {
+      const lang = getLang();
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const val = TRANSLATIONS[lang][el.getAttribute('data-i18n')];
+        if (val) el.textContent = val;
+      });
+      const name = TRANSLATIONS[lang].logo;
+      document.getElementById('footerText').innerHTML = `© 2026 <span>${name}</span> · ${lang === 'en' ? 'Inherit Classics, Create the Future' : '传承经典，创造未来'}`;
+    }
+    applyLang();
   </script>
 </body>
 

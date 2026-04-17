@@ -218,19 +218,19 @@
 
 <body>
   <nav>
-    <a class="logo" href="index.html">翰墨方舟</a>
+    <a class="logo" href="index.html" data-i18n="logo">翰墨方舟</a>
     <ul class="nav-links">
-      <li><a href="teaching.html">AI教学</a></li>
-      <li><a href="creative.html">文创生成</a></li>
-      <li><a href="shop.html">文创电商</a></li>
-      <li><a href="community.html">社区</a></li>
-      <li><a href="profile.html" class="active">个人中心</a></li>
+      <li><a href="teaching.html" data-i18n="nav_teaching">AI教学</a></li>
+      <li><a href="creative.html" data-i18n="nav_creative">文创生成</a></li>
+      <li><a href="shop.html" data-i18n="nav_shop">文创电商</a></li>
+      <li><a href="community.html" data-i18n="nav_community">社区</a></li>
+      <li><a href="profile.html" class="active" data-i18n="nav_profile">个人中心</a></li>
     </ul>
   </nav>
 
   <div class="page-header">
-    <h1>个人中心</h1>
-    <p>学习数据 · 订单管理 · 积分中心</p>
+    <h1 data-i18n="profile_title">个人中心</h1>
+    <p data-i18n="profile_sub">学习数据 · 订单管理 · 积分中心</p>
   </div>
 
   <div class="section">
@@ -239,14 +239,14 @@
       <div class="sidebar">
         <div class="user-card">
           <div class="avatar">墨</div>
-          <h3>翰墨学员</h3>
-          <p>加入 32 天</p>
-          <span class="level-badge">楷书·进阶中</span>
+          <h3 data-i18n="user_name">翰墨学员</h3>
+          <p data-i18n="user_days">加入 32 天</p>
+          <span class="level-badge" data-i18n="user_level">楷书·进阶中</span>
         </div>
         <div class="menu-list">
-          <div class="menu-item active" onclick="showTab('data')">📊 学习数据</div>
-          <div class="menu-item" onclick="showTab('orders')">📦 我的订单</div>
-          <div class="menu-item" onclick="showTab('points')">⭐ 积分中心</div>
+          <div class="menu-item active" onclick="showTab('data')" data-i18n="menu_data">📊 学习数据</div>
+          <div class="menu-item" onclick="showTab('orders')" data-i18n="menu_orders">📦 我的订单</div>
+          <div class="menu-item" onclick="showTab('points')" data-i18n="menu_points">⭐ 积分中心</div>
         </div>
       </div>
 
@@ -257,45 +257,45 @@
           <div class="stat-grid">
             <div class="stat-box">
               <div class="stat-num">32</div>
-              <div class="stat-label">学习天数</div>
+              <div class="stat-label" data-i18n="stat_days">学习天数</div>
             </div>
             <div class="stat-box">
               <div class="stat-num">18</div>
-              <div class="stat-label">完成课程</div>
+              <div class="stat-label" data-i18n="stat_courses">完成课程</div>
             </div>
             <div class="stat-box">
               <div class="stat-num">47</div>
-              <div class="stat-label">练习次数</div>
+              <div class="stat-label" data-i18n="stat_practice">练习次数</div>
             </div>
             <div class="stat-box">
               <div class="stat-num">14</div>
-              <div class="stat-label">连续打卡</div>
+              <div class="stat-label" data-i18n="stat_streak">连续打卡</div>
             </div>
           </div>
 
           <div class="radar-wrap">
-            <h4>各维度得分分析</h4>
+            <h4 data-i18n="radar_title">各维度得分分析</h4>
             <canvas id="radarChart" width="280" height="280"></canvas>
           </div>
 
           <div class="radar-wrap">
-            <h4>消费数据</h4>
+            <h4 data-i18n="spend_title">消费数据</h4>
             <div class="stat-grid" style="margin-bottom:0;">
               <div class="stat-box">
                 <div class="stat-num" style="color:var(--gold);">¥395</div>
-                <div class="stat-label">累计消费</div>
+                <div class="stat-label" data-i18n="spend_total">累计消费</div>
               </div>
               <div class="stat-box">
                 <div class="stat-num" style="color:var(--gold);">4</div>
-                <div class="stat-label">购买商品</div>
+                <div class="stat-label" data-i18n="spend_items">购买商品</div>
               </div>
               <div class="stat-box">
                 <div class="stat-num" style="color:var(--gold);">2</div>
-                <div class="stat-label">定制次数</div>
+                <div class="stat-label" data-i18n="spend_custom">定制次数</div>
               </div>
               <div class="stat-box">
                 <div class="stat-num" style="color:var(--gold);">1</div>
-                <div class="stat-label">订阅月数</div>
+                <div class="stat-label" data-i18n="spend_months">订阅月数</div>
               </div>
             </div>
           </div>
@@ -307,29 +307,26 @@
             <div class="order-item">
               <div class="order-icon">🖼️</div>
               <div class="order-info">
-                <h4>书法定制相框</h4>
-                <p>2026-04-10 · 订单号 HM20260410001</p>
+                <h4 data-i18n="order1_name">书法定制相框</h4>
+                <p data-i18n="order1_date">2026-04-10 · 订单号 HM20260410001</p>
               </div>
-              <div class="order-status"><span class="status-shipping">配送中</span><br><span
-                  style="font-size:0.75rem;color:var(--gray);">¥128</span></div>
+              <div class="order-status"><span class="status-shipping" data-i18n="order1_status">配送中</span><br><span style="font-size:0.75rem;color:var(--gray);">¥128</span></div>
             </div>
             <div class="order-item">
               <div class="order-icon">🎁</div>
               <div class="order-info">
-                <h4>新手礼盒套装</h4>
-                <p>2026-03-28 · 订单号 HM20260328002</p>
+                <h4 data-i18n="order2_name">新手礼盒套装</h4>
+                <p data-i18n="order2_date">2026-03-28 · 订单号 HM20260328002</p>
               </div>
-              <div class="order-status"><span class="status-done">已完成</span><br><span
-                  style="font-size:0.75rem;color:var(--gray);">¥168</span></div>
+              <div class="order-status"><span class="status-done" data-i18n="order2_status">已完成</span><br><span style="font-size:0.75rem;color:var(--gray);">¥168</span></div>
             </div>
             <div class="order-item">
               <div class="order-icon">📦</div>
               <div class="order-info">
-                <h4>月度订阅盒 · 4月</h4>
-                <p>2026-04-01 · 订单号 HM20260401003</p>
+                <h4 data-i18n="order3_name">月度订阅盒 · 4月</h4>
+                <p data-i18n="order3_date">2026-04-01 · 订单号 HM20260401003</p>
               </div>
-              <div class="order-status"><span class="status-shipping">备货中</span><br><span
-                  style="font-size:0.75rem;color:var(--gray);">¥99</span></div>
+              <div class="order-status"><span class="status-shipping" data-i18n="order3_status">备货中</span><br><span style="font-size:0.75rem;color:var(--gray);">¥99</span></div>
             </div>
           </div>
         </div>
@@ -338,34 +335,25 @@
         <div id="tab-points" style="display:none;">
           <div class="points-bar" style="margin-bottom:1.2rem;">
             <div>
-              <div style="font-size:0.85rem;color:var(--gray);">当前积分</div>
+              <div style="font-size:0.85rem;color:var(--gray);" data-i18n="points_label">当前积分</div>
               <div class="points-num">238</div>
             </div>
-            <a href="shop.html" class="btn btn-outline">积分兑换</a>
+            <a href="shop.html" class="btn btn-outline" data-i18n="points_exchange">积分兑换</a>
           </div>
           <div class="order-list">
             <div class="order-item">
               <div class="order-icon">✅</div>
-              <div class="order-info">
-                <h4>完成课程第2课</h4>
-                <p>2026-04-14</p>
-              </div>
+              <div class="order-info"><h4 data-i18n="pt1_name">完成课程第2课</h4><p>2026-04-14</p></div>
               <div class="order-status" style="color:#27ae60;">+50</div>
             </div>
             <div class="order-item">
               <div class="order-icon">📷</div>
-              <div class="order-info">
-                <h4>上传练习作品</h4>
-                <p>2026-04-13</p>
-              </div>
+              <div class="order-info"><h4 data-i18n="pt2_name">上传练习作品</h4><p>2026-04-13</p></div>
               <div class="order-status" style="color:#27ae60;">+20</div>
             </div>
             <div class="order-item">
               <div class="order-icon">🛒</div>
-              <div class="order-info">
-                <h4>购买新手礼盒</h4>
-                <p>2026-03-28</p>
-              </div>
+              <div class="order-info"><h4 data-i18n="pt3_name">购买新手礼盒</h4><p>2026-03-28</p></div>
               <div class="order-status" style="color:#27ae60;">+168</div>
             </div>
           </div>
@@ -375,9 +363,10 @@
   </div>
 
   <footer>
-    <p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
+    <p id="footerText">© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p>
   </footer>
 
+  <script src="lang.js"></script>
   <script>
     function showTab(name) {
       ['data', 'orders', 'points'].forEach(t => {
@@ -388,17 +377,27 @@
       });
     }
 
-    // Simple radar chart
-    (function () {
+    function applyLang() {
+      const lang = getLang();
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const val = TRANSLATIONS[lang][el.getAttribute('data-i18n')];
+        if (val) el.textContent = val;
+      });
+      // radar labels
+      const labels = TRANSLATIONS[lang].radar_labels;
+      const name = TRANSLATIONS[lang].logo;
+      document.getElementById('footerText').innerHTML = `© 2026 <span>${name}</span> · ${lang === 'en' ? 'Inherit Classics, Create the Future' : '传承经典，创造未来'}`;
+      drawRadar(labels);
+    }
+
+    function drawRadar(labels) {
       const canvas = document.getElementById('radarChart');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       const cx = 140, cy = 140, r = 100;
-      const labels = ['笔画', '结字', '章法', '平均'];
       const scores = [82, 75, 68, 75];
       const angles = labels.map((_, i) => (i / labels.length) * Math.PI * 2 - Math.PI / 2);
-
-      // grid
       ctx.strokeStyle = '#e8e0d0'; ctx.lineWidth = 1;
       [0.25, 0.5, 0.75, 1].forEach(scale => {
         ctx.beginPath();
@@ -410,25 +409,22 @@
       });
       angles.forEach(a => {
         ctx.beginPath(); ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
-        ctx.stroke();
+        ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r); ctx.stroke();
       });
-
-      // data
       ctx.beginPath(); ctx.fillStyle = 'rgba(192,57,43,0.2)'; ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 2;
       angles.forEach((a, i) => {
         const x = cx + Math.cos(a) * r * (scores[i] / 100), y = cy + Math.sin(a) * r * (scores[i] / 100);
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       });
       ctx.closePath(); ctx.fill(); ctx.stroke();
-
-      // labels
-      ctx.fillStyle = var_ink = '#1a1a2e'; ctx.font = '13px serif'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#1a1a2e'; ctx.font = '13px serif'; ctx.textAlign = 'center';
       angles.forEach((a, i) => {
         const x = cx + Math.cos(a) * (r + 20), y = cy + Math.sin(a) * (r + 20) + 5;
         ctx.fillText(labels[i] + ' ' + scores[i], x, y);
       });
-    })();
+    }
+
+    applyLang();
   </script>
 </body>
 

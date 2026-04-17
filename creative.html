@@ -54,19 +54,19 @@
 </head>
 <body>
 <nav>
-  <a class="logo" href="index.html">翰墨方舟</a>
+  <a class="logo" href="index.html" data-i18n="logo">翰墨方舟</a>
   <ul class="nav-links">
-    <li><a href="teaching.html">AI教学</a></li>
-    <li><a href="creative.html" class="active">文创生成</a></li>
-    <li><a href="shop.html">文创电商</a></li>
-    <li><a href="community.html">社区</a></li>
-    <li><a href="profile.html">个人中心</a></li>
+    <li><a href="teaching.html" data-i18n="nav_teaching">AI教学</a></li>
+    <li><a href="creative.html" class="active" data-i18n="nav_creative">文创生成</a></li>
+    <li><a href="shop.html" data-i18n="nav_shop">文创电商</a></li>
+    <li><a href="community.html" data-i18n="nav_community">社区</a></li>
+    <li><a href="profile.html" data-i18n="nav_profile">个人中心</a></li>
   </ul>
 </nav>
 
 <div class="page-header">
-  <h1>一键文创生成</h1>
-  <p>上传作品或输入文字，即刻生成专属文创产品</p>
+  <h1 data-i18n="creative_title">一键文创生成</h1>
+  <p data-i18n="creative_sub">上传作品或输入文字，即刻生成专属文创产品</p>
 </div>
 
 <div class="section">
@@ -74,83 +74,96 @@
     <!-- 左：输入 -->
     <div>
       <div class="panel" style="margin-bottom:1.2rem;">
-        <h3>内容输入</h3>
+        <h3 data-i18n="input_panel">内容输入</h3>
         <div class="upload-area" onclick="alert('上传功能演示')">
           <div style="font-size:2.5rem;">📷</div>
-          <p style="font-size:0.85rem;color:var(--gray);margin-top:0.4rem;">上传书法作品照片</p>
+          <p style="font-size:0.85rem;color:var(--gray);margin-top:0.4rem;" data-i18n="upload_calligraphy">上传书法作品照片</p>
         </div>
         <div class="input-group">
-          <label>或输入文字（英文名、祝福语、词句）</label>
-          <textarea id="textInput" rows="3" placeholder="例：福、山高水长、Happy New Year…" oninput="updatePreview()"></textarea>
+          <label data-i18n="text_label">或输入文字（英文名、祝福语、词句）</label>
+          <textarea id="textInput" rows="3" oninput="updatePreview()"></textarea>
         </div>
       </div>
 
       <div class="panel">
-        <h3>选择模板</h3>
+        <h3 data-i18n="tpl_panel">选择模板</h3>
         <div class="template-grid">
-          <div class="tpl selected" onclick="selectTpl(this,'🖼️','相框')">
-            <div class="tpl-icon">🖼️</div><p>极简相框</p>
+          <div class="tpl selected" onclick="selectTpl(this,'🖼️','tpl1')">
+            <div class="tpl-icon">🖼️</div><p data-i18n="tpl1">极简相框</p>
           </div>
-          <div class="tpl" onclick="selectTpl(this,'📜','卷轴')">
-            <div class="tpl-icon">📜</div><p>中式卷轴</p>
+          <div class="tpl" onclick="selectTpl(this,'📜','tpl2')">
+            <div class="tpl-icon">📜</div><p data-i18n="tpl2">中式卷轴</p>
           </div>
-          <div class="tpl" onclick="selectTpl(this,'👕','T恤')">
-            <div class="tpl-icon">👕</div><p>T恤印花</p>
+          <div class="tpl" onclick="selectTpl(this,'👕','tpl3')">
+            <div class="tpl-icon">👕</div><p data-i18n="tpl3">T恤印花</p>
           </div>
-          <div class="tpl" onclick="selectTpl(this,'📱','手机壳')">
-            <div class="tpl-icon">📱</div><p>手机壳</p>
+          <div class="tpl" onclick="selectTpl(this,'📱','tpl4')">
+            <div class="tpl-icon">📱</div><p data-i18n="tpl4">手机壳</p>
           </div>
-          <div class="tpl" onclick="selectTpl(this,'🪭','折扇')">
-            <div class="tpl-icon">🪭</div><p>折扇</p>
+          <div class="tpl" onclick="selectTpl(this,'🪭','tpl5')">
+            <div class="tpl-icon">🪭</div><p data-i18n="tpl5">折扇</p>
           </div>
-          <div class="tpl" onclick="selectTpl(this,'🎁','礼盒')">
-            <div class="tpl-icon">🎁</div><p>礼盒套装</p>
+          <div class="tpl" onclick="selectTpl(this,'🎁','tpl6')">
+            <div class="tpl-icon">🎁</div><p data-i18n="tpl6">礼盒套装</p>
           </div>
         </div>
         <div style="margin-top:1.2rem;">
-          <button class="btn btn-primary" style="width:100%;" onclick="generate()">生成效果预览</button>
+          <button class="btn btn-primary" style="width:100%;" onclick="generate()" data-i18n="generate_btn">生成效果预览</button>
         </div>
       </div>
     </div>
 
     <!-- 右：预览 -->
     <div class="panel">
-      <h3>效果预览</h3>
+      <h3 data-i18n="preview_panel">效果预览</h3>
       <div class="preview-box">
         <div class="preview-frame" id="previewFrame">福</div>
         <p style="font-size:0.8rem;color:var(--gray);" id="previewLabel">极简相框 · 预览效果</p>
       </div>
       <div class="action-row">
-        <button class="btn btn-primary" onclick="alert('下单功能演示')">一键下单</button>
-        <button class="btn btn-outline" onclick="generate()">重新生成</button>
+        <button class="btn btn-primary" onclick="alert('下单功能演示')" data-i18n="order_btn">一键下单</button>
+        <button class="btn btn-outline" onclick="generate()" data-i18n="regen_btn">重新生成</button>
       </div>
-      <p style="font-size:0.78rem;color:var(--gray);margin-top:0.8rem;">
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:0.8rem;" data-i18n="preview_note">
         下单后系统自动生成高清印刷文件，对接合作厂商生产配送
       </p>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
+<footer><p id="footerText">© 2026 <span>翰墨方舟</span> · 传承经典，创造未来</p></footer>
 
+<script src="lang.js"></script>
 <script>
-let currentTpl = { icon: '🖼️', name: '极简相框' };
-function selectTpl(el, icon, name) {
+let currentTplKey = 'tpl1';
+function selectTpl(el, icon, key) {
   document.querySelectorAll('.tpl').forEach(t => t.classList.remove('selected'));
   el.classList.add('selected');
-  currentTpl = { icon, name };
+  currentTplKey = key;
   updatePreview();
 }
 function updatePreview() {
   const text = document.getElementById('textInput').value.trim() || '福';
   document.getElementById('previewFrame').textContent = text.slice(0,4);
-  document.getElementById('previewLabel').textContent = currentTpl.name + ' · 预览效果';
+  document.getElementById('previewLabel').textContent = t(currentTplKey) + t('preview_label_suffix');
 }
 function generate() {
   const frame = document.getElementById('previewFrame');
   frame.style.opacity = '0.3';
   setTimeout(() => { updatePreview(); frame.style.opacity = '1'; }, 600);
 }
+function applyLang() {
+  const lang = getLang();
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = TRANSLATIONS[lang][el.getAttribute('data-i18n')];
+    if (val) el.textContent = val;
+  });
+  document.getElementById('textInput').placeholder = t('text_placeholder');
+  updatePreview();
+  const name = TRANSLATIONS[lang].logo;
+  document.getElementById('footerText').innerHTML = `© 2026 <span>${name}</span> · ${lang === 'en' ? 'Inherit Classics, Create the Future' : '传承经典，创造未来'}`;
+}
+applyLang();
 </script>
 </body>
 </html>
